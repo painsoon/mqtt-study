@@ -17,9 +17,13 @@ public class SubscribeThread implements Runnable{
 
     @Override
     public void run() {
-        final FutureConnection connection;
-        Topic[] topics =  {new Topic("psn",QoS.AT_MOST_ONCE)};
+        logger.debug("===============接受开始============");
 
+        final FutureConnection connection;
+        Topic[] topics = {
+                new Topic("mqtt/aaa", QoS.EXACTLY_ONCE),
+                new Topic("mqtt/bbb", QoS.AT_LEAST_ONCE),
+                new Topic("mqtt/ccc", QoS.AT_MOST_ONCE)};
 
         try {
             // 获取mqtt的连接对象BlockingConnection
